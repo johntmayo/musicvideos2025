@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Best Music Videos of 2025 — Top 10</title>
+  <style>
+    :root{
+      --bg:#07070b;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.62);
+      --line: rgba(255,255,255,.10);
+      --glow: rgba(255,70,170,.25);
+      --accent: #ff46aa;
+      --accent2:#55d6ff;
+      --good:#7CFF9B;
+      --bad:#ff5a5f;
+      --radius: 18px;
+
+      --h1: clamp(28px, 4.2vw, 56px);
+      --h2: clamp(16px, 2.2vw, 22px);
+      --p:  clamp(14px, 1.7vw, 16px);
+      --small: clamp(12px, 1.5vw, 13px);
+
+      --cardPad: 14px;
+      --gridGap: 12px;
+      --max: 1100px;
+    }
+
+    /* TV mode = chunkier, bolder, more distance */
+    body.tv {
+      --h1: clamp(36px, 5.0vw, 72px);
+      --h2: clamp(18px, 2.6vw, 26px);
+      --p:  clamp(16px, 2.0vw, 20px);
+      --small: clamp(13px, 1.7vw, 16px);
+      --cardPad: 18px;
+      --gridGap: 16px;
+      --max: 1400px;
+    }
+    body.tv .help { display:none; }
+    body.tv .topbar { position: sticky; top: 0; backdrop-filter: blur(12px); }
+    body.tv .brand small { display:none; }
+
+    html, body { height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 15% 10%, rgba(85,214,255,.14), transparent 60%),
+                  radial-gradient(900px 700px at 85% 25%, rgba(255,70,170,.16), transparent 55%),
+                  radial-gradient(1100px 900px at 40% 90%, rgba(124,255,155,.10), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    /* subtle film grain */
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      opacity:.18;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    /* “red yarn” scribbles */
+    .yarn{
+      position:fixed; inset:-10%;
+      pointer-events:none;
+      opacity:.55;
+      z-index:0;
+      filter: drop-shadow(0 0 14px rgba(255,70,170,.25));
+      transform: rotate(-4deg);
+    }
+
+    .wrap{
+      position:relative;
+      z-index:1;
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 16px 14px 60px;
+    }
+
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      justify-content:space-between;
+      padding: 10px 0 14px;
+      border-bottom:1px solid var(--line);
+      background: linear-gradient(to bottom, rgba(0,0,0,.35), transparent);
+    }
+
+    .brand h1{
+      font-size:var(--h1);
+      line-height:1.06;
+      margin:0;
+      letter-spacing:-0.02em;
+    }
+    .brand small{
+      display:block;
+      margin-top:6px;
+      color:var(--muted);
+      font-size:var(--small);
+    }
+
+    .controls{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:flex-end;
+      min-width: 210px;
+    }
+
+    .row{ display:flex; gap:10px; align-items:center; justify-content:flex-end; flex-wrap:wrap; }
+
+    .pill{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-size: var(--small);
+      cursor:pointer;
+      user-select:none;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .pill:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.16); }
+    .pill:active{ transform: translateY(0px) scale(.99); }
+
+    .search{
+      width:min(420px, 72vw);
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.28);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      outline:none;
+      font-size: var(--p);
+      box-shadow: 0 0 0 0 rgba(255,70,170,.0);
+      transition: box-shadow .15s ease, border-color .15s ease;
+    }
+    .search:focus{
+      border-color: rgba(255,70,170,.35);
+      box-shadow: 0 0 0 4px rgba(255,70,170,.12);
+    }
+
+    .help{
+      margin: 14px 0 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px 12px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    }
+    .help h3{
+      margin:0 0 8px;
+      font-size: var(--h2);
+      letter-spacing:-.01em;
+    }
+    .help p{ margin: 6px 0; color: var(--muted); font-size: var(--p); line-height:1.35; }
+    .help kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: .95em;
+      padding: 2px 7px;
+      border-radius: 9px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.25);
+      color: rgba(255,255,255,.85);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: var(--gridGap);
+      margin-top: 14px;
+    }
+    @media (min-width: 720px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1100px){
+      .grid{ grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    .card{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      position:relative;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+    .card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.06); }
+    .thumb{
+      position:relative;
+      aspect-ratio: 16/9;
+      background: #111;
+      overflow:hidden;
+    }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1.02);
+      filter: saturate(1.05) contrast(1.02);
+    }
+    .thumb:after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.70));
+      pointer-events:none;
+    }
+    .rank{
+      position:absolute;
+      top:10px; left:10px;
+      padding:6px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(0,0,0,.38);
+      font-weight:650;
+      font-size: var(--small);
+      letter-spacing:.02em;
+      backdrop-filter: blur(8px);
+    }
+
+    .playBadge{
+      position:absolute;
+      right:12px; bottom:12px;
+      display:flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.40);
+      backdrop-filter: blur(10px);
+      font-size: var(--small);
+      color: rgba(255,255,255,.86);
+    }
+    .playDot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(255,70,170,.16);
+    }
+
+    .meta{
+      padding: var(--cardPad);
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .title{
+      font-size: var(--h2);
+      line-height:1.2;
+      margin:0;
+      letter-spacing:-.01em;
+    }
+    .artist{
+      color: rgba(255,255,255,.85);
+      font-size: var(--p);
+      margin:0;
+    }
+    .desc{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: var(--p);
+      line-height:1.35;
+      min-height: 2.6em;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .btn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: var(--small);
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.08); }
+    .btn.primary{
+      border-color: rgba(255,70,170,.35);
+      background: rgba(255,70,170,.13);
+    }
+    .btn.primary:hover{ background: rgba(255,70,170,.18); }
+
+    .footer{
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: var(--small);
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    /* modal player */
+    .modal{
+      position:fixed; inset:0;
+      display:none;
+      place-items:center;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(10px);
+      z-index: 50;
+      padding: 18px;
+    }
+    .modal.open{ display:grid; }
+    .player{
+      width: min(1000px, 96vw);
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.55);
+      box-shadow: 0 30px 120px rgba(0,0,0,.55);
+      position:relative;
+    }
+    .playerTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 12px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    }
+    .playerTop .now{
+      min-width:0;
+    }
+    .playerTop .now strong{
+      display:block;
+      font-size: var(--p);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .playerTop .now span{
+      display:block;
+      color: var(--muted);
+      font-size: var(--small);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .close{
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.35);
+      color: rgba(255,255,255,.9);
+      padding: 8px 10px;
+      border-radius: 12px;
+      cursor:pointer;
+      font-size: var(--small);
+    }
+    .frame{
+      aspect-ratio: 16/9;
+      background:#000;
+    }
+    iframe{ width:100%; height:100%; border:0; display:block; }
+
+    /* tiny “weirdness” */
+    .blink{
+      display:inline-block;
+      width:10px; height:10px; border-radius:50%;
+      background: var(--accent2);
+      margin: 0 8px 0 0;
+      box-shadow: 0 0 0 10px rgba(85,214,255,.10);
+      animation: pulse 2.2s ease-in-out infinite;
+      vertical-align:middle;
+    }
+    @keyframes pulse{
+      0%,100%{ transform: scale(1); opacity:.85; }
+      50%{ transform: scale(1.15); opacity:.55; }
+    }
+  </style>
+</head>
+<body>
+  <!-- yarn overlay -->
+  <svg class="yarn" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M60,120 C220,40 260,250 420,180 C560,115 630,30 760,120 C910,225 980,90 1140,150"
+          fill="none" stroke="rgba(255,70,170,.45)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M90,680 C240,520 360,760 520,620 C710,455 820,720 980,560 C1080,455 1130,520 1180,460"
+          fill="none" stroke="rgba(255,70,170,.35)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M140,360 C320,520 420,220 600,360 C760,485 880,260 1060,340"
+          fill="none" stroke="rgba(255,70,170,.25)" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 7"/>
+  </svg>
+
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <h1><span class="blink"></span>Best Music Videos of 2025</h1>
+        <small>Top 10 list — tap any card to play, or open in YouTube.</small>
+      </div>
+
+      <div class="controls">
+        <input class="search" id="q" type="search" placeholder="Search (artist, title)…" autocomplete="off" />
+        <div class="row">
+          <button class="pill" id="shuffle">Shuffle</button>
+          <button class="pill" id="tv">TV Mode</button>
+          <button class="pill" id="openAll">Open All on YouTube</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="help">
+      <h3>How to use this on phone → big TV</h3>
+      <p>On your phone, open this page, hit <strong>TV Mode</strong>, then cast via AirPlay / Chromecast / HDMI adapter. (TV Mode also works great if you’re just mirroring your screen.)</p>
+      <p><kbd>Tap</kbd> a card to play in-page. <kbd>Esc</kbd> closes the player. On desktop, use <kbd>←</kbd>/<kbd>→</kbd> to jump between videos while the player is open.</p>
+    </div>
+
+    <div class="grid" id="grid" aria-live="polite"></div>
+
+    <div class="footer">
+      <div>List source: Dazed (Dec 8, 2025). Thumbnails from YouTube.</div>
+      <div>Tip: If autoplay is blocked, just tap the video area once.</div>
+    </div>
+  </div>
+
+  <!-- modal player -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Video player">
+    <div class="player">
+      <div class="playerTop">
+        <div class="now">
+          <strong id="nowTitle">—</strong>
+          <span id="nowArtist">—</span>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <a class="btn" id="nowYouTube" href="#" target="_blank" rel="noreferrer">Open in YouTube</a>
+          <button class="close" id="close">Close ✕</button>
+        </div>
+      </div>
+      <div class="frame" id="frame"></div>
+    </div>
+  </div>
+
+  <script>
+    // Data: Dazed top 10 (Dec 8, 2025)
+    // YouTube links are to the (official) uploads discovered via search.
+    const videos = [
+      {
+        rank: 10,
+        artist: "Jianbo",
+        title: "For The Honour (feat. Nix Northwest)",
+        youtube: "https://www.youtube.com/watch?v=06WYi6pCMx0",
+        id: "06WYi6pCMx0",
+        note: "Drill-noir cyberpunk cityscape vibes."
+      },
+      {
+        rank: 9,
+        artist: "Oneohtrix Point Never",
+        title: "Measuring Ruins",
+        youtube: "https://www.youtube.com/watch?v=fzC-RV1h0gc",
+        id: "fzC-RV1h0gc",
+        note: "A simulated-nature glitch ballet."
+      },
+      {
+        rank: 8,
+        artist: "Charli xcx",
+        title: "party 4 u",
+        youtube: "https://www.youtube.com/watch?v=agu22bqGHto",
+        id: "agu22bqGHto",
+        note: "After-party hangover turned billboard bonfire."
+      },
+      {
+        rank: 7,
+        artist: "Lorde",
+        title: "Man Of The Year",
+        youtube: "https://www.youtube.com/watch?v=ynrSkSYirB0",
+        id: "ynrSkSYirB0",
+        note: "Raw, physical, identity-forward catharsis."
+      },
+      {
+        rank: 6,
+        artist: "Sabrina Carpenter",
+        title: "Tears",
+        youtube: "https://www.youtube.com/watch?v=V9vuCByb6js",
+        id: "V9vuCByb6js",
+        note: "Camp horror energy + big theatrical set pieces."
+      },
+      {
+        rank: 5,
+        artist: "Dave (feat. Kano)",
+        title: "Chapter 16",
+        youtube: "https://www.youtube.com/watch?v=-q66T2dNml0",
+        id: "-q66T2dNml0",
+        note: "Intergenerational UK rap conversation, elegantly shot."
+      },
+      {
+        rank: 4,
+        artist: "Doja Cat",
+        title: "Gorgeous",
+        youtube: "https://www.youtube.com/watch?v=nBJRaflBDBg",
+        id: "nBJRaflBDBg",
+        note: "Supermodel-stacked, 80s beauty-ad delirium."
+      },
+      {
+        rank: 3,
+        artist: "Jim Legxacy",
+        title: "'06 wayne rooney",
+        youtube: "https://www.youtube.com/watch?v=RhjZgIk9oCs",
+        id: "RhjZgIk9oCs",
+        note: "FIFA ’06 nostalgia with dense UK-internet lore."
+      },
+      {
+        rank: 2,
+        artist: "Doechii",
+        title: "DENIAL IS A RIVER",
+        youtube: "https://www.youtube.com/watch?v=F0cdbR5ognY",
+        id: "F0cdbR5ognY",
+        note: "’90s sitcom staging with a narrative glow-up."
+      },
+      {
+        rank: 1,
+        artist: "Addison Rae",
+        title: "Headphones On",
+        youtube: "https://www.youtube.com/watch?v=MPvfAsu-tck",
+        id: "MPvfAsu-tck",
+        note: "Pink-wig escapism: grocery-store daydream → Iceland."
+      },
+    ].sort((a,b)=>a.rank-b.rank);
+
+    const grid = document.getElementById("grid");
+    const q = document.getElementById("q");
+    const shuffleBtn = document.getElementById("shuffle");
+    const tvBtn = document.getElementById("tv");
+    const openAllBtn = document.getElementById("openAll");
+
+    const modal = document.getElementById("modal");
+    const frame = document.getElementById("frame");
+    const closeBtn = document.getElementById("close");
+    const nowTitle = document.getElementById("nowTitle");
+    const nowArtist = document.getElementById("nowArtist");
+    const nowYouTube = document.getElementById("nowYouTube");
+
+    let filtered = [...videos];
+    let currentIndex = -1;
+
+    function ytThumb(id){
+      // High quality thumbnail; falls back automatically if unavailable.
+      return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+    }
+
+    function render(list){
+      grid.innerHTML = "";
+      if(!list.length){
+        const empty = document.createElement("div");
+        empty.style.padding = "16px";
+        empty.style.border = "1px solid rgba(255,255,255,.12)";
+        empty.style.borderRadius = "18px";
+        empty.style.background = "rgba(255,255,255,.04)";
+        empty.innerHTML = `<strong style="display:block; margin-bottom:6px;">No matches</strong>
+                           <span style="color:rgba(255,255,255,.62);">Try a different search.</span>`;
+        grid.appendChild(empty);
+        return;
+      }
+
+      for(const v of list){
+        const card = document.createElement("article");
+        card.className = "card";
+        card.tabIndex = 0;
+        card.setAttribute("role","button");
+        card.setAttribute("aria-label", `Play #${v.rank}: ${v.artist} — ${v.title}`);
+
+        card.innerHTML = `
+          <div class="thumb">
+            <img loading="lazy" alt="${escapeHtml(v.artist)} — ${escapeHtml(v.title)}" src="${ytThumb(v.id)}" />
+            <div class="rank">#${v.rank}</div>
+            <div class="playBadge"><span class="playDot"></span>Play</div>
+          </div>
+          <div class="meta">
+            <h2 class="title">${escapeHtml(v.title)}</h2>
+            <p class="artist">${escapeHtml(v.artist)}</p>
+            <p class="desc">${escapeHtml(v.note || "")}</p>
+            <div class="actions">
+              <a class="btn primary" href="${v.youtube}" target="_blank" rel="noreferrer" aria-label="Open in YouTube: ${escapeHtml(v.artist)} — ${escapeHtml(v.title)}">YouTube ↗</a>
+              <button class="btn" data-play="1">Play here</button>
+            </div>
+          </div>
+        `;
+
+        card.addEventListener("click", (e)=>{
+          // If they clicked the YouTube link, let it do its thing
+          const a = e.target.closest("a");
+          if(a) return;
+
+          // If they clicked the play button or anywhere else, play in modal
+          openPlayerById(v.id);
+        });
+
+        card.addEventListener("keydown", (e)=>{
+          if(e.key === "Enter" || e.key === " "){
+            e.preventDefault();
+            openPlayerById(v.id);
+          }
+        });
+
+        grid.appendChild(card);
+      }
+    }
+
+    function escapeHtml(s){
+      return String(s)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function openPlayerById(id){
+      const idx = filtered.findIndex(v=>v.id===id);
+      currentIndex = idx >= 0 ? idx : 0;
+      const v = filtered[currentIndex];
+      if(!v) return;
+
+      nowTitle.textContent = `#${v.rank} — ${v.title}`;
+      nowArtist.textContent = v.artist;
+      nowYouTube.href = v.youtube;
+
+      // Privacy-enhanced mode + modest branding; autoplay is best-effort (often blocked w/ sound)
+      frame.innerHTML = `
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0&modestbranding=1&playsinline=1"
+          title="${escapeHtml(v.artist)} — ${escapeHtml(v.title)}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      `;
+
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closePlayer(){
+      modal.classList.remove("open");
+      frame.innerHTML = "";
+      document.body.style.overflow = "";
+      currentIndex = -1;
+    }
+
+    function applySearch(){
+      const term = q.value.trim().toLowerCase();
+      filtered = videos.filter(v=>{
+        if(!term) return true;
+        return (v.artist + " " + v.title).toLowerCase().includes(term);
+      });
+      render(filtered);
+    }
+
+    function shuffle(){
+      // Fisher–Yates, deterministic enough for vibes
+      const a = [...filtered];
+      for(let i=a.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [a[i],a[j]] = [a[j],a[i]];
+      }
+      filtered = a;
+      render(filtered);
+    }
+
+    q.addEventListener("input", applySearch);
+    shuffleBtn.addEventListener("click", shuffle);
+
+    tvBtn.addEventListener("click", ()=>{
+      document.body.classList.toggle("tv");
+      tvBtn.textContent = document.body.classList.contains("tv") ? "TV Mode ✓" : "TV Mode";
+    });
+
+    openAllBtn.addEventListener("click", ()=>{
+      // Opens 10 tabs; browsers may block if not allowed — but it’s one click.
+      filtered.slice().sort((a,b)=>a.rank-b.rank).forEach(v=>window.open(v.youtube, "_blank", "noopener,noreferrer"));
+    });
+
+    closeBtn.addEventListener("click", closePlayer);
+    modal.addEventListener("click", (e)=>{
+      if(e.target === modal) closePlayer();
+    });
+
+    window.addEventListener("keydown", (e)=>{
+      if(!modal.classList.contains("open")) return;
+
+      if(e.key === "Escape") closePlayer();
+      if(e.key === "ArrowRight"){
+        currentIndex = Math.min(filtered.length-1, currentIndex+1);
+        openPlayerById(filtered[currentIndex].id);
+      }
+      if(e.key === "ArrowLeft"){
+        currentIndex = Math.max(0, currentIndex-1);
+        openPlayerById(filtered[currentIndex].id);
+      }
+    });
+
+    // initial render
+    render(filtered);
+  </script>
+</body>
+</html>
